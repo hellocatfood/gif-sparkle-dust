@@ -1,29 +1,38 @@
 #!/bin/bash
 
-#tiles a gif and then overlays it over a static image. Only tested with jpgs and pngs
+# overlays a gif X number of times onto a an image
+# usage: ./sparkle.sh inputimage inputgif 10
+# this would take an input image and overlay 10 copies of gif and otput
+# the result as inputimage_sparkle.gif
 
 #usage: ./sparkle.sh sparklegif.gif /directory/of/images/ (use the full location path)
 
-sparklegif=$1
-imagedirectory=$2
+# get width and height of the input image
+width=`convert $1 -coalesce -flatten -format "%[fx:w]" info:`
+height=`convert $1 -coalesce -flatten -format "%[fx:h]" info:`
 
-#create a large tile of the looping gif. It needs to be larger than the input static image, so "-scale" the $sparklegif if necessary or change the viewport value
-convert $sparklegif -coalesce -virtual-pixel tile -set option:distort:viewport 1000x1000 -distort SRT 0 sparklegif_temp.gif
+inputfile=$(basename -- "$1")
 
-for image in "$imagedirectory"*.jpg
-do
-	#get path of file
-	path=$( readlink -f "$( dirname "$image" )" )
+# copy the file to avoid overwriting/corrupting the original
+convert $1 ${inputfile%.*}_sparkle.miff
 
-	#get filename minus extension
-	file=$(basename "$image")
-	filename="${file%.*}"
+loop=1
 
-	#get extension
-	extension="${image##*.}"
+while [ $loop -le $3 ] 
+	do echo "loop $loop of $3"
+	convert ${inputfile%.*}_sparkle.miff \
+	null: \
+	-gravity NorthWest \
+	-geometry +"$(( $RANDOM % $width ))"+"$(( $RANDOM % $height ))" \
+	$2 -compose over \
+	-layers composite ${inputfile%.*}_sparkle.miff \
 
-	convert "$image" null: sparklegif_temp.gif -layers Composite "$path"/"$filename"_sparkle.gif
+loop=$((loop +1))
 
 done
 
-rm sparklegif_temp.gif
+# save the final version of the file
+convert ${inputfile%.*}_sparkle.miff ${inputfile%.*}_sparkle.gif
+
+# clean up temporary files
+rm ${inputfile%.*}_sparkle.miff
