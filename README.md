@@ -9,12 +9,15 @@ The scripts works placing gifs onto a random position on the input image and the
 `sparkle_sparkle.sh` picks a random gif from a directory of gifs. ImageMagick can't combine animations of different lengths ([see here](http://www.imagemagick.org/Usage/anim_mods/#merge)) and so, depending on the lenght of the first gif in the loop, you may find that your input gifs get cut off early or the play once and then disappear.
 
 Input file
+
 ![example image](https://i.imgur.com/HxfGeDp.jpg) 
 
 Output of `sparkle.sh`
+
 ![example image](https://media.giphy.com/media/Yo1zkCwLpCFY4EPeE2/giphy.gif)
 
 Output of `sparkle_sparkle.sh`
+
 ![example image](https://media.giphy.com/media/lS1UAitXIzMwJarIM6/giphy.gif)
 
 ## Dependencies
