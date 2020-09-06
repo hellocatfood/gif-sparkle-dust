@@ -4,6 +4,8 @@ Gif Sparkle Dust is a simple script for overlaying many copies of a gif onto an 
 
 The script works placing a gif onto a random position on the input image and then doing that repeatedly. For this reason the script is quite slow.
 
+![example image](https://i.imgur.com/HxfGeDp.jpg) ![example image](https://media.giphy.com/media/Yo1zkCwLpCFY4EPeE2/giphy.gif)
+
 ## Dependencies
 ImageMagick (version 6 used, not tested on 7)
 
