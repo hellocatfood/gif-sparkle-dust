@@ -4,7 +4,7 @@ Gif Sparkle Dust is a collection of simple scripts for overlaying many copies of
 
 The scripts works placing gifs onto a random position on the input image and then doing that repeatedly. For this reason the script is quite slow.
 
-`sparkle.sh` uses just one gif as the give to overlay.
+`sparkle.sh` uses just one gif as the gif to overlay.
 
 `sparkle_sparkle.sh` picks a random gif from a directory of gifs. ImageMagick can't combine animations of different lengths ([see here](http://www.imagemagick.org/Usage/anim_mods/#merge)) and so, depending on the lenght of the first gif in the loop, you may find that your input gifs get cut off early or the play once and then disappear.
 
@@ -23,7 +23,9 @@ Output of `sparkle_sparkle.sh`
 ## Dependencies
 ImageMagick (version 6 used, not tested on 7)
 
-# Usage
+## Usage
 `/sparkle.sh inputimage inputgif 10`
 
 Replace inputimage with your input image and replace inputgif with a gif of your choice. Using 10 will overlay 10 copies of gif onto the image. The file will be saved in the directory containing the script
+
+## Notes
